@@ -16,6 +16,7 @@ include(FindSSE)
 #endif()
 
 # OpenAL must be installed on the system, env "OPENALDIR" must be set
+if(ACID_ENABLE_AUDIO)
 find_package(OpenALSoft)
 find_package(OpenAL)
 if(OPENALSOFT_FOUND)
@@ -36,6 +37,7 @@ elseif(OPENAL_FOUND)
 	#endif()
 else()
 	message(FATAL_ERROR "Could not find OpenAL or OpenAL-Soft")
+endif()
 endif()
 
 find_package(glfw3 3.3.6 QUIET)
@@ -241,7 +243,7 @@ target_link_libraries(Acid
 		volk::volk
 		PRIVATE
 		# More IMPORTED
-		OpenAL::OpenAL
+		$<$<BOOL:${ACID_ENABLE_AUDIO}>:OpenAL::OpenAL>
 		glfw
 		${FREETYPE_LIBRARIES}
 		${GLSLANG_LIBRARIES}
