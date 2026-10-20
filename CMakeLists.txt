@@ -4,6 +4,7 @@ project(Acid VERSION 0.14.3 LANGUAGES CXX C)
 
 option(BUILD_SHARED_LIBS "Build Shared Libraries" ON)
 option(BUILD_TESTS "Build test applications" ON)
+option(ACID_ENABLE_AUDIO "Build with OpenAL sound support" ON)
 option(ACID_INSTALL_RESOURCES "Installs the Resources directory" ON)
 option(ACID_LINK_RESOURCES "Passes local Resources directory into debug Confg" ON)
 
