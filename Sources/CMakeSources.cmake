@@ -498,6 +498,12 @@ set(_temp_acid_sources
 		Utils/String.cpp
 		Utils/ThreadPool.cpp
 		)
+if(NOT ACID_ENABLE_AUDIO)
+    # Comment out OpenAL-dependent translation units and compile a silent replacement.
+    list(FILTER _temp_acid_sources EXCLUDE REGEX "^Audio/")
+    list(APPEND _temp_acid_sources Audio/AudioDisabled.cpp)
+endif()
+
 set(_temp_acid_third_party_sources
 		../External/dr_libs/dr_flac.c
 		../External/dr_libs/dr_mp3.c
